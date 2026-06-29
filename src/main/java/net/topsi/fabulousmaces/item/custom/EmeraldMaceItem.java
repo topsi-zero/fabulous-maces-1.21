@@ -12,32 +12,56 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.decoration.ArmorStandEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
+import net.minecraft.registry.tag.StructureTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
+import net.minecraft.world.gen.structure.StructureKeys;
+import net.topsi.fabulousmaces.item.ModItems;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 public class EmeraldMaceItem extends Item {
+
+    private static final float ATTACK_DAMAGE = 5.0F;
+    private static final float ATTACK_SPEED = -3.4F;
+
+    private static final float EARLY_FALL = 4.0F;
+    private static final float MIDDLE_FALL = 12.0F;
+    private static final float LATE_FALL = 22.0F;
+
+    private static final float MIN_FALL_DISTANCE = 1.5F;
+
+    public static final float KNOCKBACK_RANGE = 3.5F;
+    private static final float KNOCKBACK_POWER_VERTICAL = 0.7F;
+    private static final float KNOCKBACK_POWER_HORIZONTAL = 0.7F;
+
     private static final int ATTACK_DAMAGE_MODIFIER_VALUE = 3;
     private static final float ATTACK_SPEED_MODIFIER_VALUE = -3.4F;
     public static final float MINING_SPEED_MULTIPLIER = 1.5F;
     private static final float field_50141 = 5.0F;
-    public static final float KNOCKBACK_RANGE = 3.5F;
-    private static final float KNOCKBACK_POWER = 0.7F;
+
+
 
     public EmeraldMaceItem(Settings settings) {
         super(settings);
@@ -47,12 +71,12 @@ public class EmeraldMaceItem extends Item {
         return AttributeModifiersComponent.builder()
                 .add(
                         EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                        new EntityAttributeModifier(BASE_ATTACK_DAMAGE_MODIFIER_ID, 5.0, EntityAttributeModifier.Operation.ADD_VALUE),
+                        new EntityAttributeModifier(BASE_ATTACK_DAMAGE_MODIFIER_ID, ATTACK_DAMAGE, EntityAttributeModifier.Operation.ADD_VALUE),
                         AttributeModifierSlot.MAINHAND
                 )
                 .add(
                         EntityAttributes.GENERIC_ATTACK_SPEED,
-                        new EntityAttributeModifier(BASE_ATTACK_SPEED_MODIFIER_ID, -3.4F, EntityAttributeModifier.Operation.ADD_VALUE),
+                        new EntityAttributeModifier(BASE_ATTACK_SPEED_MODIFIER_ID, ATTACK_SPEED, EntityAttributeModifier.Operation.ADD_VALUE),
                         AttributeModifierSlot.MAINHAND
                 )
                 .build();
@@ -136,11 +160,11 @@ public class EmeraldMaceItem extends Item {
                 float h = livingEntity.fallDistance;
                 float i;
                 if (h <= 3.0F) {
-                    i = 4.0F * h;
+                    i = EARLY_FALL * h;
                 } else if (h <= 8.0F) {
-                    i = 12.0F + 2.0F * (h - 3.0F);
+                    i = MIDDLE_FALL + 2.0F * (h - 3.0F);
                 } else {
-                    i = 22.0F + h - 8.0F;
+                    i = LATE_FALL + h - 8.0F;
                 }
 
                 return livingEntity.getWorld() instanceof ServerWorld serverWorld
@@ -154,12 +178,12 @@ public class EmeraldMaceItem extends Item {
 
     private static void knockbackNearbyEntities(World world, PlayerEntity player, Entity attacked) {
         world.syncWorldEvent(WorldEvents.SMASH_ATTACK, attacked.getSteppingPos(), 750);
-        world.getEntitiesByClass(LivingEntity.class, attacked.getBoundingBox().expand(3.5), getKnockbackPredicate(player, attacked)).forEach(entity -> {
+        world.getEntitiesByClass(LivingEntity.class, attacked.getBoundingBox().expand(KNOCKBACK_RANGE), getKnockbackPredicate(player, attacked)).forEach(entity -> {
             Vec3d vec3d = entity.getPos().subtract(attacked.getPos());
             double d = getKnockback(player, entity, vec3d);
             Vec3d vec3d2 = vec3d.normalize().multiply(d);
             if (d > 0.0) {
-                entity.addVelocity(vec3d2.x, 0.7F, vec3d2.z);
+                entity.addVelocity(vec3d2.x, KNOCKBACK_POWER_HORIZONTAL, vec3d2.z);
                 if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
                     serverPlayerEntity.networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(serverPlayerEntity));
                 }
@@ -174,19 +198,80 @@ public class EmeraldMaceItem extends Item {
             boolean bl3 = !player.isTeammate(entity);
             boolean bl4 = !(entity instanceof TameableEntity tameableEntity && tameableEntity.isTamed() && player.getUuid().equals(tameableEntity.getOwnerUuid()));
             boolean bl5 = !(entity instanceof ArmorStandEntity armorStandEntity && armorStandEntity.isMarker());
-            boolean bl6 = attacked.squaredDistanceTo(entity) <= Math.pow(3.5, 2.0);
+            boolean bl6 = attacked.squaredDistanceTo(entity) <= Math.pow(KNOCKBACK_RANGE, 2.0);
             return bl && bl2 && bl3 && bl4 && bl5 && bl6;
         };
     }
 
     private static double getKnockback(PlayerEntity player, LivingEntity attacked, Vec3d distance) {
         return (3.5 - distance.length())
-                * 0.7F
+                * KNOCKBACK_POWER_VERTICAL
                 * (player.fallDistance > 5.0F ? 2 : 1)
                 * (1.0 - attacked.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
     }
 
     public static boolean shouldDealAdditionalDamage(LivingEntity attacker) {
-        return attacker.fallDistance > 1.5F && !attacker.isFallFlying();
+        return attacker.fallDistance > MIN_FALL_DISTANCE && !attacker.isFallFlying();
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+        if (entity instanceof PlayerEntity player && !world.isClient()) {
+            boolean hasMaceInHand =
+                    player.getMainHandStack().isOf(ModItems.EMERALD_MACE) ||
+                            player.getOffHandStack().isOf(ModItems.EMERALD_MACE);
+
+            if (hasMaceInHand) {
+
+                player.addStatusEffect(new StatusEffectInstance(
+                        StatusEffects.HERO_OF_THE_VILLAGE,
+                        40,
+                        0,
+                        true,
+                        false,
+                        true
+                ));
+            }
+        }
+    }
+
+    @Override
+    public TypedActionResult<ItemStack> use(World world, net.minecraft.entity.player.PlayerEntity player, Hand hand) {
+        ItemStack stack = player.getStackInHand(hand);
+
+        if (world.isClient) {
+            return TypedActionResult.pass(stack);
+        }
+
+        ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
+        ServerWorld serverWorld = (ServerWorld) world;
+
+        BlockPos playerPos = serverPlayer.getBlockPos();
+
+        int radius = 100;
+
+        BlockPos villagePos = serverWorld.locateStructure(
+                StructureTags.VILLAGE,
+                playerPos,
+                radius,
+                false
+        );
+
+        if (villagePos != null) {
+            serverPlayer.sendMessage(
+                    Text.literal("Nearest Village: [" + villagePos.getX()
+                            + villagePos.getY()
+                            + villagePos.getZ()
+                            + "]"),
+                    false
+            );
+        } else {
+            serverPlayer.sendMessage(
+                    Text.literal("No village found nearby."),
+                    false
+            );
+        }
+
+        return TypedActionResult.success(stack);
     }
 }

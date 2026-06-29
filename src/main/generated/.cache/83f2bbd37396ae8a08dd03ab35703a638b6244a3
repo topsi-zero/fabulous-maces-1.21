@@ -1,4 +1,4 @@
-// 1.21	2026-06-28T18:23:34.582964	Fabulous Maces/Recipes
+// 1.21	2026-06-29T22:01:30.510033	Fabulous Maces/Recipes
 27a7429125ead12146629e7ff157c25673950248 data/fabulousmaces/recipe/emerald_fire_mace.json
 bf6c6f006b13131f37fe8a5117d26a57d44810cd data/fabulousmaces/recipe/emerald_mace.json
 4b85ccfa7c80e35ac13420d861be3b7838ef0f93 data/fabulousmaces/recipe/netherite_rod_smithing.json
@@ -16,8 +16,8 @@ e20aad4a90d876d0d76615771387d471bfdfc2cd data/fabulousmaces/recipe/iron_fire_mac
 f93b1a1e66de32689d6ae2ed649f437976f92a93 data/fabulousmaces/recipe/diamond_fire_mace.json
 94a35a435a16868ae77aea3c813b58d4340755a3 data/fabulousmaces/recipe/fire_mace.json
 d9b0fc0b7dcedcf119ca134fc1c0dd5f394163fb data/fabulousmaces/advancement/recipes/combat/emerald_rod.json
-630a010150bdc3b053050a304e9bf2a456d46740 data/fabulousmaces/advancement/recipes/combat/diamond_mace.json
 282c7d8a7e5c82fd587e71aab69ce37c4361e0d8 data/fabulousmaces/recipe/iron_mace.json
+630a010150bdc3b053050a304e9bf2a456d46740 data/fabulousmaces/advancement/recipes/combat/diamond_mace.json
 1e280faa368643b1f12232532694b0faef71b6b4 data/fabulousmaces/advancement/recipes/combat/fire_mace.json
 48938e2345ae4f2c3b8b1a7a0b31920a8e2d68eb data/fabulousmaces/recipe/netherite_mace_smithing.json
 a27f7fd8ae4c1bee5bf7fe051be8d5e1e24dc2ad data/fabulousmaces/recipe/netherite_fire_mace_smithing.json
