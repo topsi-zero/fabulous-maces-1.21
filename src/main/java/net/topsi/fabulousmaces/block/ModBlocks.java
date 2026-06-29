@@ -14,17 +14,6 @@ import net.topsi.fabulousmaces.FabulousMaces;
 
 public class ModBlocks {
 
-    public static final Block PINK_GARNET_BLOCK = registerBlock("pink_garnet_block",
-            new Block(AbstractBlock.Settings.create()
-                    .strength(4f)
-                    .requiresTool()
-                    .sounds(BlockSoundGroup.AMETHYST_BLOCK)));
-
-    public static final Block PINK_GARNET_ORE = registerBlock("pink_garnet_ore",
-            new ExperienceDroppingBlock(UniformIntProvider.create(2, 5),
-                    AbstractBlock.Settings.create().strength(3f).requiresTool()));
-
-
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, Identifier.of(FabulousMaces.MOD_ID, name), block);
@@ -38,8 +27,7 @@ public class ModBlocks {
         FabulousMaces.LOGGER.info("Registering Mod Blocks for " + FabulousMaces.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
-            entries.add(ModBlocks.PINK_GARNET_BLOCK);
-            entries.add(ModBlocks.PINK_GARNET_ORE);
+
         });
     }
 

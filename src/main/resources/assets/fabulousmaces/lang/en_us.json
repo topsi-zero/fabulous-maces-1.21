@@ -1,3 +1,20 @@
 {
+  "item.fabulousmaces.fabulous_mace": "Fabulous Mace",
+  "item.fabulousmaces.iron_mace": "Iron Mace",
+  "item.fabulousmaces.iron_fire_mace": "Iron Fire Mace",
+  "item.fabulousmaces.diamond_mace": "Diamond Mace",
+  "item.fabulousmaces.diamond_fire_mace": "Diamond Fire Mace",
+  "item.fabulousmaces.emerald_mace": "Emerald Mace",
+  "item.fabulousmaces.emerald_fire_mace": "Emerald Fire Mace",
+  "item.fabulousmaces.netherite_mace": "Netherite Mace",
+  "item.fabulousmaces.netherite_fire_mace": "Netherite Fire Mace",
 
+  "item.fabulousmaces.iron_rod": "Iron Rod",
+  "item.fabulousmaces.emerald_rod": "Emerald Rod",
+  "item.fabulousmaces.diamond_rod": "Diamond Rod",
+  "item.fabulousmaces.netherite_rod": "Netherite Rod",
+
+
+
+  "itemgroup.fabulousmaces.fabulous_maces": "Fabulous Maces"
 }

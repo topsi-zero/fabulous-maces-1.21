@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "e": {
+      "item": "minecraft:emerald"
+    }
+  },
+  "pattern": [
+    "  e",
+    " e ",
+    "e  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "fabulousmaces:emerald_rod"
+  }
+}

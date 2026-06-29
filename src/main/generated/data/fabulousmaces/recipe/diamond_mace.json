@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "h": {
+      "item": "minecraft:heavy_core"
+    },
+    "r": {
+      "item": "fabulousmaces:diamond_rod"
+    }
+  },
+  "pattern": [
+    "   ",
+    " h ",
+    " r "
+  ],
+  "result": {
+    "count": 1,
+    "id": "fabulousmaces:diamond_mace"
+  }
+}

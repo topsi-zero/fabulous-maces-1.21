@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:breeze_rod"
+    },
+    "b": {
+      "item": "minecraft:blaze_powder"
+    },
+    "d": {
+      "item": "fabulousmaces:diamond_rod"
+    },
+    "e": {
+      "item": "fabulousmaces:emerald_rod"
+    },
+    "h": {
+      "item": "minecraft:heavy_core"
+    },
+    "i": {
+      "item": "fabulousmaces:iron_rod"
+    },
+    "n": {
+      "item": "fabulousmaces:netherite_rod"
+    }
+  },
+  "pattern": [
+    "bhb",
+    "ied",
+    "BnB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fabulousmaces:fabulous_mace"
+  }
+}

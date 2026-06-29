@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "d": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "pattern": [
+    "  d",
+    " d ",
+    "d  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "fabulousmaces:diamond_rod"
+  }
+}

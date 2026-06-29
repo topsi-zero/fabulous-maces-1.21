@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_netherite_mace": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fabulousmaces:netherite_fire_mace"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fabulousmaces:netherite_fire_mace"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_netherite_mace"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fabulousmaces:netherite_fire_mace"
+    ]
+  }
+}

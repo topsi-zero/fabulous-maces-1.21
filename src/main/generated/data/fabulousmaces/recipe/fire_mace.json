@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "b": {
+      "item": "minecraft:blaze_powder"
+    },
+    "m": {
+      "item": "minecraft:mace"
+    }
+  },
+  "pattern": [
+    "bbb",
+    "bmb",
+    "bbb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fabulousmaces:fire_mace"
+  }
+}
