@@ -218,8 +218,8 @@ public class IronFireMaceItem extends Item {
         if (entity instanceof PlayerEntity player && !world.isClient()) {
 
             boolean hasMaceInHand =
-                    player.getMainHandStack().isOf(ModItems.IRON_MACE) ||
-                            player.getOffHandStack().isOf(ModItems.IRON_MACE);
+                    player.getMainHandStack().isOf(ModItems.IRON_FIRE_MACE) ||
+                            player.getOffHandStack().isOf(ModItems.IRON_FIRE_MACE);
 
             if (hasMaceInHand) {
 
@@ -231,10 +231,6 @@ public class IronFireMaceItem extends Item {
                         false,
                         true
                 ));
-
-            }
-
-            if (hasMaceInHand) {
 
                 player.addStatusEffect(new StatusEffectInstance(
                         StatusEffects.FIRE_RESISTANCE,

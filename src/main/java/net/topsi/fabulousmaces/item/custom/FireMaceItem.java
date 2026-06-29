@@ -197,5 +197,30 @@ public class FireMaceItem extends Item {
         return attacker.fallDistance > 1.5F && !attacker.isFallFlying();
     }
 
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+
+        if (entity instanceof PlayerEntity player && !world.isClient()) {
+
+            boolean hasMaceInHand =
+                    player.getMainHandStack().isOf(ModItems.FIRE_MACE) ||
+                            player.getOffHandStack().isOf(ModItems.FIRE_MACE);
+
+            if (hasMaceInHand) {
+                player.addStatusEffect(new StatusEffectInstance(
+                        StatusEffects.FIRE_RESISTANCE,
+                        40,
+                        0,
+                        true,
+                        false,
+                        true
+                ));
+
+            }
+        }
+
+
+    }
+
 
 }
