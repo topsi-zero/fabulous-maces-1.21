@@ -126,6 +126,7 @@ public class EmeraldFireMaceItem extends Item {
                         1.0F
                 );
             }
+            target.setOnFireFor(6);
 
             knockbackNearbyEntities(serverWorld, serverPlayerEntity, target);
         }

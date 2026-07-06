@@ -127,6 +127,7 @@ public class IronFireMaceItem extends Item {
                         1.0F
                 );
             }
+            target.setOnFireFor(5);
 
             knockbackNearbyEntities(serverWorld, serverPlayerEntity, target);
         }

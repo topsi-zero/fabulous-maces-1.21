@@ -126,6 +126,7 @@ public class DiamondFireMaceItem extends Item {
                         1.0F
                 );
             }
+            target.setOnFireFor(8);
 
             knockbackNearbyEntities(serverWorld, serverPlayerEntity, target);
         }

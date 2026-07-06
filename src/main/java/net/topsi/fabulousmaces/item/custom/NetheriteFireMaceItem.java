@@ -131,6 +131,7 @@ public class NetheriteFireMaceItem extends Item {
                         1.0F
                 );
             }
+            target.setOnFireFor(10);
 
             knockbackNearbyEntities(serverWorld, serverPlayerEntity, target);
         }
