@@ -5,6 +5,7 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 
 import net.topsi.fabulousmaces.block.ModBlocks;
+import net.topsi.fabulousmaces.enitity.ModEntities;
 import net.topsi.fabulousmaces.item.ModItemGroups;
 import net.topsi.fabulousmaces.item.ModItems;
 import org.slf4j.Logger;
@@ -20,8 +21,9 @@ public class FabulousMaces implements ModInitializer {
 		ModBlocks.registerModBlocks();
 		ModItems.registerModItems();
 		ModItemGroups.registerItemGroups();
+		ModEntities.registerModEntities();
 
-		LOGGER.info("Hello Fabric world!");
+		LOGGER.info("Registered all for" + MOD_ID);
 	}
 
 	public static Identifier id(String path) {
