@@ -1,9 +1,7 @@
 # Fabulous Maces
+This Mod ads new Fabulous Mace types that elegante the experience you Get from playing with the Mace in Minecraft.
 
-## Setup
-
-For setup instructions, please see the [Fabric Documentation page](https://docs.fabricmc.net/develop/getting-started/creating-a-project#setting-up) related to the IDE that you are using.
+## Macetypes
 
 ## License
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
