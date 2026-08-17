@@ -33,18 +33,18 @@ import java.util.function.Predicate;
 
 public class FabulousMaceItem extends Item {
 
-    private static final float ATTACK_DAMAGE = 5.0F;
+    private static final float ATTACK_DAMAGE = 7.0F;
     private static final float ATTACK_SPEED = -3.4F;
 
-    private static final float EARLY_FALL = 4.0F;
+    private static final float EARLY_FALL = 7.0F;
     private static final float MIDDLE_FALL = 12.0F;
     private static final float LATE_FALL = 22.0F;
 
-    private static final float MIN_FALL_DISTANCE = 1.5F;
+    private static final float MIN_FALL_DISTANCE = 1.0F;
 
-    public static final float KNOCKBACK_RANGE = 3.5F;
-    private static final float KNOCKBACK_POWER_VERTICAL = 0.7F;
-    private static final float KNOCKBACK_POWER_HORIZONTAL = 0.7F;
+    public static final float KNOCKBACK_RANGE = 5.0F;
+    private static final float KNOCKBACK_POWER_VERTICAL = 2.0F;
+    private static final float KNOCKBACK_POWER_HORIZONTAL = 2.0F;
 
     private static final int ATTACK_DAMAGE_MODIFIER_VALUE = 3;
     private static final float ATTACK_SPEED_MODIFIER_VALUE = -3.4F;

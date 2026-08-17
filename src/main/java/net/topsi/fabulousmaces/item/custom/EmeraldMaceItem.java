@@ -263,12 +263,12 @@ public class EmeraldMaceItem extends Item {
                             + villagePos.getY()
                             + villagePos.getZ()
                             + "]"),
-                    false
+                    true
             );
         } else {
             serverPlayer.sendMessage(
                     Text.literal("No village found nearby."),
-                    false
+                    true
             );
         }
 
