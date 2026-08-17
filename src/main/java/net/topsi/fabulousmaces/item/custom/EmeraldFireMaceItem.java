@@ -49,6 +49,8 @@ public class EmeraldFireMaceItem extends Item {
 
     private static final float MIN_FALL_DISTANCE = 1.5F;
 
+    private static final int COOLDOWN_TICKS = 1000;
+
     public static final float KNOCKBACK_RANGE = 3.5F;
     private static final float KNOCKBACK_POWER_VERTICAL = 0.7F;
     private static final float KNOCKBACK_POWER_HORIZONTAL = 0.7F;
@@ -253,6 +255,10 @@ public class EmeraldFireMaceItem extends Item {
         ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
         ServerWorld serverWorld = (ServerWorld) world;
 
+        if (serverPlayer.getItemCooldownManager().isCoolingDown(this)) {
+            return TypedActionResult.fail(stack);
+        }
+
         BlockPos playerPos = serverPlayer.getBlockPos();
 
         int radius = 100;
@@ -278,6 +284,8 @@ public class EmeraldFireMaceItem extends Item {
                     true
             );
         }
+
+        serverPlayer.getItemCooldownManager().set(this, COOLDOWN_TICKS);
 
         return TypedActionResult.success(stack);
     }

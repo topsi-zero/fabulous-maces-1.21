@@ -255,6 +255,8 @@ public class DiamondMaceItem extends Item {
 
         Vec3d vel = serverPlayer.getVelocity();
 
+
+
         serverPlayer.setVelocity(vel.x, 1.2, vel.z);
         serverPlayer.velocityModified = true;
 

@@ -55,7 +55,7 @@ public class NetheriteFireMaceItem extends Item {
     private static final float KNOCKBACK_POWER_VERTICAL = 0.7F;
     private static final float KNOCKBACK_POWER_HORIZONTAL = 0.7F;
 
-    private static final int COOLDOWN_TICKS = 100;
+    private static final int COOLDOWN_TICKS = 110;
 
     private static final int ATTACK_DAMAGE_MODIFIER_VALUE = 3;
     private static final float ATTACK_SPEED_MODIFIER_VALUE = -3.4F;

@@ -52,6 +52,8 @@ public class IronMaceItem extends Item {
 
     private static final float MIN_FALL_DISTANCE = 1.5F;
 
+    private static final int COOLDOWN_TICKS = 150;
+
     public static final float KNOCKBACK_RANGE = 3.5F;
     private static final float KNOCKBACK_POWER_VERTICAL = 0.7F;
     private static final float KNOCKBACK_POWER_HORIZONTAL = 0.7F;
@@ -254,35 +256,44 @@ public class IronMaceItem extends Item {
         BlockPos basePos = context.getBlockPos();
         Direction side = context.getSide();
 
-        BlockPos spawnPos = basePos.offset(side, 2);
+        ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
 
-        Box box = new Box(
-                spawnPos.getX() + 0.2,
-                spawnPos.getY(),
-                spawnPos.getZ() + 0.2,
-                spawnPos.getX() + 0.8,
-                spawnPos.getY() + 2.9,
-                spawnPos.getZ() + 0.8
-        );
+        if (!serverPlayer.getItemCooldownManager().isCoolingDown(this)) {
+            BlockPos spawnPos = basePos.offset(side, 2);
 
-        if (!serverWorld.isSpaceEmpty(box)) {
-            return ActionResult.FAIL;
-        }
-
-        IronGolemEntity golem = EntityType.IRON_GOLEM.create(serverWorld);
-
-        if (golem != null) {
-            golem.refreshPositionAndAngles(
-                    spawnPos.getX() + 0.5,
+            Box box = new Box(
+                    spawnPos.getX() + 0.2,
                     spawnPos.getY(),
-                    spawnPos.getZ() + 0.5,
-                    0.0f,
-                    0.0f
+                    spawnPos.getZ() + 0.2,
+                    spawnPos.getX() + 0.8,
+                    spawnPos.getY() + 2.9,
+                    spawnPos.getZ() + 0.8
             );
 
-            serverWorld.spawnEntity(golem);
+            if (!serverWorld.isSpaceEmpty(box)) {
+                return ActionResult.FAIL;
+            }
+
+            IronGolemEntity golem = EntityType.IRON_GOLEM.create(serverWorld);
+
+            if (golem != null) {
+                golem.refreshPositionAndAngles(
+                        spawnPos.getX() + 0.5,
+                        spawnPos.getY(),
+                        spawnPos.getZ() + 0.5,
+                        0.0f,
+                        0.0f
+                );
+
+                serverWorld.spawnEntity(golem);
+            }
+
+            serverPlayer.getItemCooldownManager().set(this, COOLDOWN_TICKS);
+            return ActionResult.SUCCESS;
         }
 
-        return ActionResult.SUCCESS;
+
+
+        return ActionResult.FAIL;
     }
 }
