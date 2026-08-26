@@ -9,44 +9,16 @@ Fabulous Maces is a Java-based Minecraft mod designed to bring new dimensions to
 ## Features
 
 - **Enhanced Mace Mechanics** - New and improved combat features for maces
-- **Client-Side Features** - Visual enhancements and player-side improvements
-- **Server-Side Features** - Game logic and mechanics enhancements
-- **Minecraft 1.21 Compatible** - Built for the latest Minecraft version
+- **Maces: **
+    - Iron:       spawn an Iron golem to defend you
+    - Emerald:    get the location of the nearest village
+    - Diamond:    launch up into the air
+    - Netherite:  custom stomp attack 
 
 ## Requirements
 
 - Minecraft 1.21
-- Java 21 or higher
-- Forge or compatible mod loader
-
-## Installation
-
-1. Download the latest release from the [releases page](https://github.com/topsi-zero/fabulous-maces-1.21/releases)
-2. Place the mod JAR file in your Minecraft `mods` folder
-3. Launch Minecraft with Forge
-4. Enjoy your enhanced mace experience!
-
-## Building from Source
-
-### Prerequisites
-- JDK 21+
-- Git
-
-### Build Steps
-
-```bash
-git clone https://github.com/topsi-zero/fabulous-maces-1.21.git
-cd fabulous-maces-1.21
-./gradlew build
-```
-
-The compiled mod will be located in `build/libs/`.
-
-## Project Structure
-
-This is a Java-based Minecraft mod project with the following organization:
-- **Client-Side Code** - Handles visual and client-specific mechanics
-- **Server-Side Code** - Manages game logic and server-side interactions
+- Fabric
 
 ## License
 
@@ -66,11 +38,6 @@ For questions, issues, or discussions about the mod, please:
 - Start a new [Discussion](https://github.com/topsi-zero/fabulous-maces-1.21/discussions) for general questions
 - Open an [Issue](https://github.com/topsi-zero/fabulous-maces-1.21/issues/new) for bug reports
 
-## Changelog
-
-See [CHANGELOG](./CHANGELOG.md) for version history and updates.
-
----
 
 **Repository:** [topsi-zero/fabulous-maces-1.21](https://github.com/topsi-zero/fabulous-maces-1.21)  
 **Language:** Java  
