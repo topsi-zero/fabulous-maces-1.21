@@ -1,16 +1,14 @@
 # Fabulous Maces 1.21
 
-A Minecraft mod for version 1.21 that adds fabulous mace mechanics and enhancements to both client-side and server-side gameplay.
-
-## Overview
-
-Fabulous Maces is a Java-based Minecraft mod designed to bring new dimensions to mace combat and mechanics in Minecraft 1.21. Whether you're playing solo or on a server, this mod enhances your experience with client-side and server-side features.
+A Minecraft mod for version 1.21 that adds fabulous mace mechanics and enhancements to the Wonderfull world of Minecraft!
 
 ## Features
 
-- **Enhanced Mace Mechanics** - New and improved combat features for maces
-  
-    **Maces: **
+- **Enhanced Mace Mechanics**
+    - new and improved combat features for maces
+    - special attacks
+
+- **Maces**
     - Iron:       spawn an Iron golem to defend you
     - Emerald:    get the location of the nearest village
     - Diamond:    launch up into the air
