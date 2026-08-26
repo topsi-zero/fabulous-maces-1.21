@@ -9,7 +9,8 @@ Fabulous Maces is a Java-based Minecraft mod designed to bring new dimensions to
 ## Features
 
 - **Enhanced Mace Mechanics** - New and improved combat features for maces
-- **Maces: **
+  
+    **Maces: **
     - Iron:       spawn an Iron golem to defend you
     - Emerald:    get the location of the nearest village
     - Diamond:    launch up into the air
